@@ -1,11 +1,27 @@
 import express from "express"
+import Joi, { valid } from 'joi'
+import ExpressValidation from 'express-joi-validation'
 import { postLogin,postRegister } from "../controllers/controller.js"
 
 const router = express.Router()
 
-router.get("/register", postRegister)
+const validator = ExpressValidation.createValidator({})
 
-router.get("/login", postLogin)
+const registerSchema = Joi.object({// rules for inputs
+    username: Joi.string().min(3).max(12).required(),
+    password: Joi.string().min(3).max(12).required(),
+    email: Joi.string().email().required()
+})
+
+
+const loginSchema = Joi.object({// rules for inputs
+    password: Joi.string().min(3).max(12).required(),
+    email: Joi.string().email().required()
+})
+
+router.get("/register", validator.body(registerSchema) ,postRegister) // register validator schema middleware
+
+router.get("/login", validator.body(loginSchema),postLogin) // login validator schema middleware
 
 export default router;
 expo
