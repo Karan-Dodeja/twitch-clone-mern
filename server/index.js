@@ -4,6 +4,7 @@ import cors from 'cors'
 import dotenv from "dotenv"
 import { expression } from "joi";
 
+import authRoutes from "./src/routes/authRoutes.js" // Adding routes to main
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ app.use(cors());
 app.get('/', (req,res) => {
     return res.send('Server us Running!')
 })
+
+app.use('/api/auth', authRoutes); // Assign route to path
 
 const server = http.createServer(app) // create server using HTTP module and we will pass app
 
