@@ -1,5 +1,6 @@
 import User from "../../models/User.js"
 import bcrypt from "bcryptjs"
+import jwt from 'jsonwebtoken'
 
 export const postRegister = async (req, res) => {
 
@@ -17,11 +18,29 @@ export const postRegister = async (req, res) => {
             email: email.toLowerCase(),
             password: encryptedPassword
         })
-        
+        const token = jwt.sign( // create jwt token
+            // user details that are encryted
+            {
+                userId: user._id,
+                email,
+            },
+            process.env.TOKEN_KEY,// secret
+            // additional config
+            {
+                expiresIn: "5h",
+            }
+        );
+        return res.status(201).json({ // send success response
+            userDetails: {
+                email,
+                username,
+                token
+            }
+        })
     } catch (error) {
         console.log(error)
         return res.status(500).send('Error occured. Please try again later.')
     }
 
-    return res.send("User has been added to the database!")
+    //return res.send("User has been added to the database!")
 }
