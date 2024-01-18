@@ -21,6 +21,6 @@ const loginSchema = Joi.object({// rules for inputs
 
 router.post("/register", validator.body(registerSchema), postRegister) // register validator schema middleware
 
-router.get("/login", validator.body(loginSchema), postLogin) // login validator schema middleware
+router.post("/login", validator.body(loginSchema), postLogin) // login validator schema middleware
 
 export default router;
