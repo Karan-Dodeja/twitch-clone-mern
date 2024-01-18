@@ -1,4 +1,4 @@
-import { Express } from "express"
+import express from "express"
 import http from "http"
 import cors from 'cors'
 import dotenv from "dotenv"
@@ -24,6 +24,7 @@ app.use('/api/auth', authRoutes); // Assign route to path
 
 const server = http.createServer(app) // create server using HTTP module and we will pass app
 
+// Connect mongonDB server and run application
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         server.listen(PORT, () => {

@@ -1,2 +1,2 @@
-export { postLogin } from "./auth/postLogin";
-export { postRegister } from "./auth/postRegister";
+export { postLogin } from './auth/postLogin.js'
+export { postRegister } from './auth/postRegister.js'
