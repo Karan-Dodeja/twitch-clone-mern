@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import { Logo } from './Logo'
 import { AuthInput } from './AuthInput'
 import { emailValidationMessage, passwordValidationMessage, validateEmail, validatePassword } from '../shared/validators'
+import { useLogin } from '../shared/hooks'
+
 
 export const Login = ({ switchAuthhandler }) => {
+
+  const { login, isLoading } = useLogin();
 
   // Set default form state
   const [formState, setFormState] = useState({
@@ -56,6 +60,14 @@ export const Login = ({ switchAuthhandler }) => {
 
   }
 
+  // handle login hook pass user value through URL on button click
+  const handleLogin = (event) => {
+    event.preventDefault();
+    login(formState.email.value, formState.password.value)
+  }
+
+  const isSubmitButtonDisable = isLoading || !formState.password.isValid || !formState.email.isValid
+
   return (
     <div className="login-container" >
       <Logo text={"Login to clone"} />
@@ -84,7 +96,7 @@ export const Login = ({ switchAuthhandler }) => {
           validationMessage={passwordValidationMessage}
         />
 
-        <button disabled={!formState.password.isValid || !formState.email.isValid}>Log in</button>
+        <button onClick={handleLogin} disabled={isSubmitButtonDisable}>Log in</button>
 
       </form>
 

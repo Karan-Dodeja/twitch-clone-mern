@@ -9,7 +9,7 @@ const appClient = axios.create({
 // Connect login server api
 export const login = async (data) => {
     try {
-        return appClient.post('/auth/login', data);
+        return await appClient.post('/auth/login', data);
     } catch (exception) {
         return {
             error: true,
@@ -21,7 +21,7 @@ export const login = async (data) => {
 // Connect register server api
 export const register = async (data) => {
     try {
-        return appClient.post('/auth/register', data);
+        return await appClient.post('/auth/register', data);
     } catch (exception) {
         return {
             error: true,

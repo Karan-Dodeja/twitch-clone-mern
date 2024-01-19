@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { Logo } from './Logo'
 import { AuthInput } from './AuthInput'
 import { emailValidationMessage, passwordConfValidationMessage, passwordValidationMessage, usernameValidationMessage, validateEmail, validatePassword, validatePasswordConf, validateUsername } from '../shared/validators'
+import { useRegister } from '../shared/hooks'
 
 export const Register = ({ switchAuthhandler }) => {
+
+  const { register, isLoading } = useRegister();
 
   // Set default form state
   const [formState, setFormState] = useState({
@@ -69,8 +72,15 @@ export const Register = ({ switchAuthhandler }) => {
         showError: !isValid,
       },
     }))
-
   }
+
+  // handle login hook pass user value through URL on button click
+  const handleRegister = (event) => {
+    event.preventDefault();
+    register(formState.email.value, formState.password.value, formState.username.value)
+  }
+
+  const isSubmitButtonDisable = isLoading || !formState.password.isValid || !formState.email.isValid || !formState.username.isValid || formState.password.isValid !== formState.passwordConf.value
 
   return (
     <div className="register-container" >
@@ -122,7 +132,7 @@ export const Register = ({ switchAuthhandler }) => {
           validationMessage={passwordConfValidationMessage}
         />
 
-        <button disabled={!formState.password.isValid || !formState.email.isValid || !formState.username.isValid || formState.password.isValid !== formState.passwordConf.value}>Register in</button>
+        <button onClick={handleRegister} disabled={isSubmitButtonDisable}>Register in</button>
       </form>
 
       <span onClick={switchAuthhandler} className='auth-form-switch-label'>Already have an account ? Sign in</span>
