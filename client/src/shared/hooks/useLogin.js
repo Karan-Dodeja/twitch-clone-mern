@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login as loginRequest } from '../../api'
+import toast from 'react-hot-toast';
 
 // get user email and password from navigate url "/auth"
 export const useLogin = () => {
@@ -21,12 +22,12 @@ export const useLogin = () => {
         setIsLoading(false);
 
         if (response.error) {
-            return console.log("error")
+            return toast.error(error.response?.response?.data || 'Error occured while Login in, please try again.')
         }
 
         const { userDetails } = response.data;
 
-        localStorage.setItem('user', userDetails)
+        localStorage.setItem('user', JSON.stringify(userDetails))
 
         navigate('/');
 
