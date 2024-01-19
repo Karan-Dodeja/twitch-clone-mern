@@ -4,7 +4,7 @@ import logoPlaceholder from "../resources/images/logoPlaceholder.svg"
 export const Logo = ({ text }) => {
   return (
     <div className='auth-form-logo-container'>
-        <img src={logoPlaceholder} />
+        <img src={logoPlaceholder} alt=''/>
           <span>&nbsp;&nbsp;{text}</span>
     </div>
   )

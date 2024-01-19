@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const validateEmail = () => {
   const regex = /\S+@\S+\. \S+/;
   return regex.test()

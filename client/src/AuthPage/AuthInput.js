@@ -11,11 +11,11 @@ export const AuthInput = ({
     onBlurHandler
 }) => {
 
-    const handleValueChange = () => {
+    const handleValueChange = (e) => {
         onChangeHandler(e.target.value, field)
     }
 
-    const handleInputBlur = () => {
+    const handleInputBlur = (e) => {
         onBlurHandler(e.target.value, field)
     }
 

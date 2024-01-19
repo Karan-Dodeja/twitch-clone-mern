@@ -122,9 +122,7 @@ export const Register = ({ switchAuthhandler }) => {
           validationMessage={passwordConfValidationMessage}
         />
 
-        <button
-          disabled={!formState.password.isValid || !formState.email.isValid || !formState.username.isValid || formState.password.isValid != formState.passwordConf.value}>Register in</button>
-
+        <button disabled={!formState.password.isValid || !formState.email.isValid || !formState.username.isValid || formState.password.isValid !== formState.passwordConf.value}>Register in</button>
       </form>
 
       <span onClick={switchAuthhandler} className='auth-form-switch-label'>Already have an account ? Sign in</span>

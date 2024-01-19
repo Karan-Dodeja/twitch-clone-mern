@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Login } from "./Login.js";
-import { Register } from './register.js'; 
+import { Register } from './Register.js'; 
 import "./authPage.css";
 
 const AuthPage = () => {
