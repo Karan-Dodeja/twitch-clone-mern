@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes); // Assign route to path
+app.use("/api/channels", channelsRoutes)
 
 const server = http.createServer(app) // create server using HTTP module and we will pass app
 

@@ -21,19 +21,19 @@ bcrypt.js, cors, dotenv. express,express-joi-validation, joi, jsonwebtoken, mong
 
 Routes:
 SETTING'S ROUTE:
-/api/settings/channel GET, payload() resonse(id, username, title, desc, avatarurl, streamkey)
+/api/settings/channel GET, payload() resonse(id, username, title, desc, avatarurl, streamkey), isSecured(True)
 
-/api/settings/channel PUT payload(username, desc, title, avatar) resonse(username, title, desc, avatarurl)
+/api/settings/channel PUT payload(username, desc, title, avatar) resonse(username, title, desc, avatarurl), isSecured(True)
 
-/api/settings/password patch payload(password, newPassword) resonse(200 Success Message)
+/api/settings/password patch payload(password, newPassword) resonse(200 Success Message), isSecured(True)
 
 CHANNEL'S ROUTE:
-/api/channels GET payload() response(id, title, avatarUrl, username, isOnline)
+/api/channels GET payload() response(id, title, avatarUrl, username, isOnline), isSecured(False)
 
-/api/channels/:channelld GET payload() response(id, title, desc, username, isOnline, streamUrl)
+/api/channels/:channelld GET payload() response(id, title, desc, username, isOnline, streamUrl), isSecured(False)
 
-/api/channels/followed GET payload() response(Arrays with ids of followed channels)
+/api/channels/followed GET payload() response(Arrays with ids of followed channels), isSecured(True)
 
-/api/channels/follow POST payload(channelid) response(200 with success message)
+/api/channels/follow POST payload(channelid) response(200 with success message), isSecured(True)
 
 git config --global http.sslVerify false
