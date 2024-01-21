@@ -4,7 +4,9 @@ import cors from 'cors'
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 
-import authRoutes from "./src/routes/authRoutes.js"
+import authRoutes from "./src/routes/authRoutes.js";
+import settingsRoutes from "./src/routes/settingsRoutes.js";
+import channelsRoutes from "./src/routes/channelsRoutes.js";
 
 dotenv.config();
 
@@ -20,8 +22,10 @@ app.get('/', (req, res) => {
     return res.send('Server us Running!')
 })
 
-app.use('/api/auth', authRoutes); // Assign route to path
-app.use("/api/channels", channelsRoutes)
+// Assign route to path
+app.use('/api/auth', authRoutes);
+app.use("/api/channels", channelsRoutes);
+app.use("/api/settings", settingsRoutes);
 
 const server = http.createServer(app) // create server using HTTP module and we will pass app
 
