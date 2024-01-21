@@ -1,4 +1,5 @@
 import User from "../../models/User.js"
+import Channel from "../../models/Channel.js"
 import bcrypt from "bcryptjs"
 import jwt from 'jsonwebtoken'
 
@@ -13,10 +14,15 @@ export const postRegister = async (req, res) => {
             return res.status(409).send('Email already exists.') // Check if email exists in DB
         }
         const encryptedPassword = await bcrypt.hash(password, 10); // Encrypt password
+        
+        // Create channel as user register
+        const newChannel = await Channel.create({})
+
         const user = await User.create({ // using user model to save data
             username,
             email: email.toLowerCase(),
-            password: encryptedPassword
+            password: encryptedPassword,
+            channel: newChannel._id, // Connect channel with registered user
         })
         const token = jwt.sign( // create jwt token
             // user details that are encryted

@@ -35,3 +35,5 @@ CHANNEL'S ROUTE:
 /api/channels/followed GET payload() response(Arrays with ids of followed channels)
 
 /api/channels/follow POST payload(channelid) response(200 with success message)
+
+git config --global http.sslVerify false
