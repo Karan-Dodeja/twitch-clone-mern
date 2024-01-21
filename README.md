@@ -18,3 +18,20 @@ because 1.Fullstack Javascript, 2.Efficient Data Flow, 3.High Scalability, 4.Ric
 
 Packages/Dependencies on server side:
 bcrypt.js, cors, dotenv. express,express-joi-validation, joi, jsonwebtoken, mongoose, nodemon, socket.io, uuid
+
+Routes:
+SETTING'S ROUTE:
+/api/settings/channel GET, payload() resonse(id, username, title, desc, avatarurl, streamkey)
+
+/api/settings/channel PUT payload(username, desc, title, avatar) resonse(username, title, desc, avatarurl)
+
+/api/settings/password patch payload(password, newPassword) resonse(200 Success Message)
+
+CHANNEL'S ROUTE:
+/api/channels GET payload() response(id, title, avatarUrl, username, isOnline)
+
+/api/channels/:channelld GET payload() response(id, title, desc, username, isOnline, streamUrl)
+
+/api/channels/followed GET payload() response(Arrays with ids of followed channels)
+
+/api/channels/follow POST payload(channelid) response(200 with success message)

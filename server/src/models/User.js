@@ -5,7 +5,9 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     email: { type: String, unique: true },
     username: { type: String },
-    password: { type: String }
+    password: { type: String },
+    channel: { type: Schema.Types.ObjectId, ref: 'Channel' },
+    followedChannel: { type: [{ type: Schema.Types.ObjectId, ref: 'Channel' }] }
 })
 
 export default mongoose.model("User", userSchema);

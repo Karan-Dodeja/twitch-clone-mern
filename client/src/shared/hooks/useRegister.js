@@ -23,7 +23,7 @@ export const useRegister = () => {
         setIsLoading(false);
 
         if (response.error) {
-            return toast.error(error.response?.response?.data || 'Error occured while Register in, please try again.')
+            return toast.error(response.exception?.response?.data || 'Error occured while Register in, please try again.')
         }
 
         const { userDetails } = response.data;
