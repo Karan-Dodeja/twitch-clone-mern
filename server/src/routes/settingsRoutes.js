@@ -2,7 +2,7 @@ import express from "express";
 import ExpressValidator from 'express-joi-validation';
 import Joi from "joi";
 import { verifyToken } from "../middlewares/auth";
-import { getChannelSettings, putChannelSettings, patchChangePassword } from "../controllers/controller.js";
+import { getChannelSettings, putChannelSettings, patchChangePassword, postFollowChannel } from "../controllers/controller.js";
 
 const router = express.Router();
 
@@ -27,5 +27,7 @@ router.get('/channel', verifyToken, getChannelSettings);
 router.put('/channel', verifyToken, validator.body(channelSettingsSchema), putChannelSettings)
 
 router.patch('/password', verifyToken, validator.body(changePasswordSchema), patchChangePassword)
+
+router.post('/follow', verifyToken,  postFollowChannel);
 
 export default router;
