@@ -1,10 +1,14 @@
-import React from 'react'
-import './dashboardPage.css'
+import React from 'react';
+import { Nav } from './Nav';
+import { Content } from './Content';
+import { Sidebar } from './Sidebar';
+import './dashboardPage.css';
 
-const DashboardPage = () => {
-  return (
-    <div>DashboardPage</div>
-  )
+export const DashboardPage = () => {
+  return <div className='dashboard-container'>
+    <Nav />
+    <Sidebar />
+    <Content />
+  </div>
 }
 
-export default DashboardPage
