@@ -1,1 +1,2 @@
-export { Content } from './Content'
+export { Content } from './Content';
+export { Channels } from './Channels';
