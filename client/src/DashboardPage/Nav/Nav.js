@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../resources/images/logoPlaceholder.svg";
+import { useUserDetails } from "../../shared/hooks";
 
 const NavLogo = () => {
   return (
@@ -18,16 +19,23 @@ const NavButton = ({ text, onClickHandler }) => {
 };
 
 export const Nav = () => {
+  
+  const { isLogged } = useUserDetails();
+
   return (
     <div className="nav-container">
       <NavLogo />
       <div className="nav-buttons-container">
         <NavButton text="Browser" onClickHandler={() => {}} />
-        <NavButton text="Login" onClickHandler={() => {}} />
-        <div>
-          <NavButton text="My Account" onClickHandler={() => {}} />
-          <NavButton text="Logout" onClickHandler={() => {}} />
-        </div>
+        {/* If User Not Loged in render the button else show guest */}
+        {!isLogged ? (
+          <NavButton text="Login" onClickHandler={() => {}} />
+        ) : (
+          <div>
+            <NavButton text="My Account" onClickHandler={() => {}} />
+            <NavButton text="Logout" onClickHandler={() => {}} />
+          </div>
+        )}
       </div>
     </div>
   );
