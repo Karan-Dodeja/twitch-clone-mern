@@ -20,7 +20,7 @@ const NavButton = ({ text, onClickHandler }) => {
 };
 
 export const Nav = () => {
-  const { isLogged } = useUserDetails();
+  const { isLogged, logout } = useUserDetails();
   const navigate = useNavigate();
   const handleNavigateToAuth = () => {
     navigate("/auth");
@@ -30,6 +30,9 @@ export const Nav = () => {
   };
   const handleNavigateToChannels = () => {
     navigate("/channels");
+  };
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -46,7 +49,7 @@ export const Nav = () => {
               text="My Account"
               onClickHandler={handleNavigateToSettings}
             />
-            <NavButton text="Logout" onClickHandler={() => {}} />
+            <NavButton text="Logout" onClickHandler={handleLogout()} />
           </div>
         )}
       </div>
