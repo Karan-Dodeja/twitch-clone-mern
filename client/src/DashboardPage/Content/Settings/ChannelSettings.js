@@ -105,6 +105,16 @@ export const ChannelSettings = ({ settings }) => {
     }));
   };
 
+  const handleFormSubmit = (e) => {
+    e.prevDefault();
+  };
+
+  const isSubmitButtonDisabled =
+    !formState.Username.isValid ||
+    !formState.title.isValid ||
+    !formState.description.isValid ||
+    !formState.avatarUrl.isValid;
+
   return (
     <form className="settings-form">
       {inputs.map((input) => {
@@ -121,6 +131,9 @@ export const ChannelSettings = ({ settings }) => {
           textarea={input.textarea}
         />;
       })}
+      <button onClick={handleFormSubmit} disable={isSubmitButtonDisabled}>
+        Save Changes
+      </button>
     </form>
   );
 };
