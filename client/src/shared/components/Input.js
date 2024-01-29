@@ -9,6 +9,7 @@ export const Input = ({
   showErrorMessage,
   validationMessage,
   onBlurHandler,
+  textarea,
 }) => {
   const handleValueChange = (e) => {
     onChangeHandler(e.target.value, field);
@@ -23,12 +24,23 @@ export const Input = ({
       <div className="auth-form-label">
         <span>{label}</span>
       </div>
-      <input
-        type={type}
-        value={value}
-        onChange={handleValueChange}
-        onBlur={handleInputBlur}
-      />
+      {textarea ? (
+        <textarea
+          type={type}
+          value={value}
+          onChange={handleValueChange}
+          onBlur={handleInputBlur}
+          rows={5}
+          style={{ maxWidth: "400px" }}
+        />
+      ) : (
+        <input
+          type={type}
+          value={value}
+          onChange={handleValueChange}
+          onBlur={handleInputBlur}
+        />
+      )}
       <span className="auth-form-validation-message">
         {showErrorMessage && validationMessage}
       </span>
