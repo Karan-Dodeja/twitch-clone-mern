@@ -6,6 +6,21 @@ const appClient = axios.create({
   timeout: 1000,
 });
 
+// Token attach to authorization header
+appClient.interceptors.request.use(
+  (config) => {
+    const userDetails = localStorage.getItem("user");
+    if (userDetails) {
+      const token = JSON.parse(userDetails).token;
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
+);
+
 // Connect login server api
 export const login = async (data) => {
   try {
@@ -33,7 +48,7 @@ export const register = async (data) => {
 // Connect channel settings api
 export const getChannelSettings = async (data) => {
   try {
-    return await appClient.get("/channels");
+    return await appClient.get("/settings/channel");
   } catch (exception) {
     return {
       error: true,
