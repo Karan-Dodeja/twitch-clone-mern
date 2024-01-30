@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getChannelSettings } from "../../api/api";
 import { toast } from "react-hot-toast";
 
@@ -27,6 +27,10 @@ export const useChannelSettings = () => {
 
   // save changed settings to DB
   const saveSettings = () => {};
+
+  useEffect(() => {
+    fetchChannelSettings();
+  }, []);
 
   return {
     isFetching: !channelSettings,
