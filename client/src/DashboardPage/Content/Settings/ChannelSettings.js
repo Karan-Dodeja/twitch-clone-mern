@@ -42,22 +42,22 @@ const inputs = [
 export const ChannelSettings = ({ settings, saveSettings }) => {
   const [formState, setFormState] = useState({
     title: {
-      isValid: false,
+      isValid: validateTitle(settings.title),
       showError: false,
       value: settings.title,
     },
     Username: {
-      isValid: false,
+      isValid: validateTitle(settings.username),
       showError: false,
       value: settings.Username,
     },
     avatarUrl: {
-      isValid: false,
+      isValid: validateTitle(settings.avatarUrl),
       showError: false,
       value: settings.avatarUrl,
     },
     description: {
-      isValid: false,
+      isValid: validateTitle(settings.description),
       showError: false,
       value: settings.description,
     },
