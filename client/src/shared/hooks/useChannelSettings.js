@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getChannelSettings } from "../../api/api";
+import { getChannelSettings, updateChannelSettings } from "../../api/api";
 import { toast } from "react-hot-toast";
 
 export const useChannelSettings = () => {
@@ -26,7 +26,19 @@ export const useChannelSettings = () => {
   };
 
   // save changed settings to DB
-  const saveSettings = () => {};
+  const saveSettings = async (data) => {
+    const response = await updateChannelSettings(data);
+    if (response.error) {
+      // eslint-disable-next-line no-undef
+      return toast.error(
+        response.exception?.response?.data ||
+          "Error occurred when fetching channel details from server."
+      );
+    }
+
+    toast.success('Channel settings saved successfully.')
+
+  };
 
   useEffect(() => {
     fetchChannelSettings();

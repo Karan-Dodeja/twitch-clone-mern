@@ -56,3 +56,14 @@ export const getChannelSettings = async (data) => {
     };
   }
 };
+
+export const updateChannelSettings = async (data) => {
+  try {
+    return await appClient.put("/settings/channel", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
