@@ -4,6 +4,7 @@ import {
   validatePassword,
 } from "../../../shared/validators";
 import { Input } from "../../../shared/components";
+import { useChangePassword } from "../../../shared/hooks";
 
 const inputs = [
   {
@@ -33,6 +34,8 @@ export const PasswordSettings = () => {
       value: "",
     },
   });
+
+  const { changePassword } = useChangePassword();
 
   // Handle inputs from user
   const handleInputValueChange = (value, field) => {
@@ -64,6 +67,7 @@ export const PasswordSettings = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    changePassword(formState.password.value, formState.newPassword.value);
   };
 
   return (

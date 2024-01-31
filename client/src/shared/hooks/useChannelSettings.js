@@ -36,8 +36,7 @@ export const useChannelSettings = () => {
       );
     }
 
-    toast.success('Channel settings saved successfully.')
-
+    toast.success("Channel settings saved successfully.");
   };
 
   useEffect(() => {
