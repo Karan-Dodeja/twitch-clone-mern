@@ -100,3 +100,14 @@ export const getChannels = async () => {
     };
   }
 };
+
+export const getChannelDetails = async (channelId) => {
+  try {
+    return await appClient.get(`/channels/${channelId}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
