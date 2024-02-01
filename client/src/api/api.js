@@ -78,3 +78,25 @@ export const changePassword = async (data) => {
     };
   }
 };
+
+export const getFollowedChannels = async () => {
+  try {
+    return await appClient.get("/channels/followed");
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getChannels = async () => {
+  try {
+    return await appClient.get("/channels");
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
