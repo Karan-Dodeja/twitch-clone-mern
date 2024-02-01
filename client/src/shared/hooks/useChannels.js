@@ -43,7 +43,7 @@ export const useChannels = () => {
   return {
     getChannels,
     isFetching: !Boolean(channels),
-    allChannels: channels.channels,
-    followedChannels: channels.followedChannels,
+    allChannels: channels?.channels,
+    followedChannels: channels?.followedChannels,
   };
 };
