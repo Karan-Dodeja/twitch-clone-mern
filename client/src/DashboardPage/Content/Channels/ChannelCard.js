@@ -19,7 +19,7 @@ export const ChannelCard = ({
   isOnline,
 }) => {
   const handleNavigate = () => {
-    navigateToChannelHandler();
+    navigateToChannelHandler(id);
   };
   return (
     <div className="channels-card" onClick={handleNavigate}>
