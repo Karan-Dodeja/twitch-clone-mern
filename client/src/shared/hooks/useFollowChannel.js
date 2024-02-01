@@ -3,7 +3,7 @@ import { followChannel as followChannelRequest } from "../../api/api";
 import { toast } from "react-hot-toast";
 
 export const useFollowChannel = () => {
-  const followedChannel = async (channelId) => {
+  const followedChannel = async (channelId, onSuccess) => {
     const responseData = await followChannelRequest(channelId);
 
     if (responseData.error) {
@@ -14,6 +14,7 @@ export const useFollowChannel = () => {
     }
 
     toast.success("Channel followed successfully.");
+    onSuccess(true);
   };
 
   return {

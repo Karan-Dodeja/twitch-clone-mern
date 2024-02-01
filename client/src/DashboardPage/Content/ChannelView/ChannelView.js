@@ -5,7 +5,7 @@ import { ChannelDescription } from "./ChannelDescription";
 import { useChannelDetails } from "../../../shared/hooks";
 import { LoadingSpinner } from "../../../shared/components";
 
-export const ChannelView = () => {
+export const ChannelView = ({ getChannels }) => {
   const { isFetching, channelDetails, getChannelDetails } = useChannelDetails();
   const { id } = useParams();
   useEffect(() => {
@@ -25,6 +25,7 @@ export const ChannelView = () => {
           title={channelDetails.title}
           description={channelDetails.description}
           username={channelDetails.username}
+          getChannels={getChannels}
         />
       </div>
       <Chat />
