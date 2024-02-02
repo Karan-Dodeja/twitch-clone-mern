@@ -5,6 +5,7 @@ import { Sidebar } from "./Sidebar";
 import "./dashboardPage.css";
 import { useChannels, useUserDetails } from "../shared/hooks";
 import { LoadingSpinner } from "../shared/components";
+import { connectWithSocketServer } from "../socketConn";
 
 export const DashboardPage = () => {
   const { getChannels, isFetching, allChannels, followedChannels } =
@@ -12,6 +13,7 @@ export const DashboardPage = () => {
   const { isLogged } = useUserDetails();
   useEffect(() => {
     getChannels(isLogged);
+    connectWithSocketServer()
   }, []);
   if (isFetching) {
     return <LoadingSpinner />;
