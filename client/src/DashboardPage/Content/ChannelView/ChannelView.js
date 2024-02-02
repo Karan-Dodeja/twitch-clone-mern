@@ -6,14 +6,10 @@ import { useChannelDetails } from "../../../shared/hooks";
 import { LoadingSpinner } from "../../../shared/components";
 import { ReactFlvPlayer } from "react-flv-player";
 
-export const Stream = () => {
+export const Stream = ({ streamUrl }) => {
   return (
     <div className="channel-video-container">
-      <ReactFlvPlayer
-        width="100%"
-        height="100%"
-        url="http://localhost:8000/live/"
-      />
+      <ReactFlvPlayer width="100%" height="100%" url={streamUrl} />
     </div>
   );
 };
@@ -33,7 +29,7 @@ export const ChannelView = ({ getChannels }) => {
         {/* <div className="channel-offline-placeholder">
           <span>Channel is offline.</span>
         </div> */}
-        <Stream />
+        <Stream streamUrl={channelDetails.streamUrl} />
         <ChannelDescription
           channelId={channelDetails.id}
           title={channelDetails.title}
