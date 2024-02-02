@@ -13,6 +13,7 @@ export const emitChatHistory = async (socket, channelId) => {
         })),
       });
     }
+    
     socket.emit("chat-history", {
       errorOccurred: true,
     });
