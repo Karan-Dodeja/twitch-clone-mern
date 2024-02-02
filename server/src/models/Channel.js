@@ -12,7 +12,7 @@ const channelSchema = new Schema({
     title: { type: String, default: defaultTitle },
     description: { type: String, default: defaultDescription },
     avatarUrl: { type: String, default: 'none' },
-    streamKey: { type: String, default: uuid() },
+    streamKey: { type: String, default: uuid },
     messages: {
         type: [{ type: Schema.Types.ObjectId, ref: 'Message' }], // Connected message model/schema
         default: [],
