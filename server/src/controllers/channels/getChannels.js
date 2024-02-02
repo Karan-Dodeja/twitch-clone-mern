@@ -1,4 +1,5 @@
 import User from "../../models/User";
+import axios from "axios";
 
 export const getChannels = async (_, res) => {
   try {
@@ -11,6 +12,23 @@ export const getChannels = async (_, res) => {
       }
     ).populate("channel"); // populate data from channel models
 
+    const activeStreamsData = await axios.get(
+      "http://localhost:8000/api/streams"
+    );
+
+    const activeStreams = activeStreamsData.data;
+
+    let liveStreams = [];
+
+    for (const streamId in activeStreams?.live) {
+      if (
+        activeStreams.live[streamId].publisher &&
+        activeStreams.live[streamId].publisher !== null
+      ) {
+        liveStreams.push(streamId);
+      }
+    }
+
     // populate the details of the channel/user
     const channels = users
       .filter((u) => u.channel.isActive)
@@ -20,7 +38,7 @@ export const getChannels = async (_, res) => {
           title: user.channel.title,
           avatarUrl: user.channel.avatarUrl,
           username: user.username,
-          isOnline: false,
+          isOnline: liveStreams.includes(user.channel.streamKey),
         };
       });
     return res.json({

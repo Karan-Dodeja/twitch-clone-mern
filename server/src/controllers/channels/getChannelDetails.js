@@ -24,10 +24,10 @@ export const getChannelDetails = async (req, res) => {
 
     let liveStreams = [];
 
-    for (const streamId in activeStreamsData?.live) {
+    for (const streamId in activeStreams?.live) {
       if (
-        activeStreamsData.live[streamId].publisher &&
-        activeStreamsData.live[streamId].publisher !== null
+        activeStreams.live[streamId].publisher &&
+        activeStreams.live[streamId].publisher !== null
       ) {
         liveStreams.push(streamId);
       }
