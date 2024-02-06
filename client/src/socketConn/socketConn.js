@@ -14,9 +14,15 @@ export const connectWithSocketServer = () => {
   socket.on("chat-history", (chatHistory) => {
     console.log("chat-history-came-from-server");
   });
+
+  socket.on("chat-message", (chatMessage) => {
+    console.log("new message came");
+    console.log(chatMessage);
+  });
 };
 
 export const getChatHistory = (channelId) => {
+  socket.join(channelId);
   socket.emit("chat-history", channelId);
 };
 

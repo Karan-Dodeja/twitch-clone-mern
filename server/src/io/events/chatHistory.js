@@ -41,6 +41,8 @@ export const emitChatMessage = async (io, messageData) => {
       channel.messages.push(newMessage._id);
 
       await channel.save();
+
+      io.to(messageData.toChannel).emit("chat-message", newMessage);
     }
   } catch (error) {
     console.log(error);
