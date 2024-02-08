@@ -22,10 +22,10 @@ const Message = ({ author, content }) => {
   );
 };
 
-export const Messages = () => {
+export const Messages = ({ messages }) => {
   return (
     <div className="chat-messages-container">
-      {messagesD.map((message) => (
+      {messages.map((message) => (
         <Message
           key={message.id}
           author={message.author}

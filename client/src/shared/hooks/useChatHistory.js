@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+import { useStore } from "../../store";
 import { getChatHistory, sendChatMessage } from "../../socketConn";
 import { useUserDetails } from "./useUserDetails";
 import { closeChatSubscription } from "../../socketConn/socketConn";
 
 export const useChatHistory = (channelId) => {
+  const { chatHistory } = useStore();
   const { isLogged, username } = useUserDetails();
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export const useChatHistory = (channelId) => {
   };
 
   return {
-    messages: [],
+    messages: chatHistory?.channelId === channelId ? chatHistory.messages : [],
     sendMessage,
   };
 };
